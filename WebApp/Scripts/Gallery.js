@@ -1,14 +1,23 @@
 ﻿$(document).ready(function () {
     //load default page number selection
     var pNumber = $(".gallery-page-number");
+    var lastUrlSegment = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+    if (isNaN(lastUrlSegment)) {
+        selectPageNumber(pNumber,1);
+    }
+    else {
+        selectPageNumber(pNumber,lastUrlSegment);
+    }
+});
+
+function selectPageNumber(pNumber, pageNumber) {
     pNumber.each(function (i, obj) {
-        if (i == 0){
+        if (i == pageNumber - 1) {
             $(this).css("border", "1px solid");
             return;
         }
     });
-
-});
+}
 
 //image blur on hover
 $(".gallery-image img").hover(function () {

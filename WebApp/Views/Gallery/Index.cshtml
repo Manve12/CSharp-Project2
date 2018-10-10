@@ -21,7 +21,10 @@
                 <ul class="gallery-page-number-list">
                     @for (int i = 0; i < ViewBag.PageNumberLimit; i++)
                     {
-                        <li id="@(i+1)" class="gallery-page-number">@(i+1)</li>
+                        
+                        
+                            <li class="gallery-page-number" id="@(i+1)"><a href="@Url.Action("Index", "Gallery", new { id = (i+1) })">@(i + 1)</a></li>
+                        
                     }
                 </ul>
             </div>

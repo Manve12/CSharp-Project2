@@ -19,6 +19,7 @@ namespace WebApp.Controllers
         // GET: Gallery
         public ActionResult Index()
         {
+            
             ViewBag.PhotoList = GetPhotos();
            
             ViewData["RandomImageUrl"] = GetRandomImageUrl();
@@ -42,7 +43,7 @@ namespace WebApp.Controllers
             return jsonData["urls"]["full"].Value;
         }
 
-        public static List<JToken> GetPhotos(int pageNumber = 3)
+        public static List<JToken> GetPhotos(int pageNumber = 1)
         {
             JArray listOfPhotos = JArray.Parse(_callApi("photos",pageNumber).ToString());
             var photos = new List<JToken>();
