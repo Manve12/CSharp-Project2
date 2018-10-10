@@ -1,1 +1,54 @@
-﻿
+﻿.register-wrapper {
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50%;
+    height: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.register-heading,
+.register-title {
+    text-align: center;
+}
+
+.register-form .form-group {
+    width: 50%;
+    padding: 0;
+    margin: 0;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.register-button-wrapper {
+    margin: 0;
+    padding: 0 25px;
+}
+
+.register-button {
+    float: right !important;
+}
+
+.register-edit-field {
+    font-size: 24px;
+}
+
+.register-edit-field:focus,
+.register-edit-field:active,
+.register-edit-field:hover,
+.register-button:focus,
+.register-button:active,
+.register-button:hover
+{
+    outline: none;
+    box-shadow: 0px 0px 0px 4px rgba(255,255,255,0.6);
+    color:white;
+}
+
+.register-button,
+.register-edit-field {
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+}
