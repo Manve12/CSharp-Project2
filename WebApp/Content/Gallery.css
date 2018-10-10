@@ -1,0 +1,14 @@
+﻿.gallery-wrapper
+{
+    background-color: rgba(0,0,0,0.6);
+    position: fixed;
+    top: 8vh;
+    left: 1vw;
+    width: 98vw;
+    height: 90vh;
+}
+
+.gallery-wrapper
+{
+
+}
