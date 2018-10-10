@@ -1,11 +1,24 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
+
 }
+
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
 
 <div class="gallery-wrapper">
     <div class="gallery-wrapper">
-        
+        <img class="gallery-random-background" src="@ViewData["RandomImageUrl"]" />
+        <div class="gallery-random-background-overlay">
+            <div class="gallery-image-container">
+                @foreach (var i in ViewBag.PhotoList)
+                {
+                    <div class="gallery-image">
+                        <img src="@i["urls"]["regular"]" />
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </div>
 
