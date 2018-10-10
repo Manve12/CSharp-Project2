@@ -53,3 +53,24 @@ width: 101%;
 {
     padding:0;
 }
+
+.gallery-page-number-wrapper{
+    width:100%;
+}
+
+.gallery-page-number{
+    display:block;
+    float:left;
+    color:white;
+    width:25px;
+    text-align:center;
+    font-size:20px;
+    margin:10px;
+}
+
+.gallery-page-number-list{
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-28%);
+}

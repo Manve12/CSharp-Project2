@@ -42,9 +42,9 @@ namespace WebApp.Controllers
             return jsonData["urls"]["full"].Value;
         }
 
-        public static List<JToken> GetPhotos(int pageNumber = 1)
+        public static List<JToken> GetPhotos(int pageNumber = 3)
         {
-            JArray listOfPhotos = JArray.Parse(_callApi("photos").ToString());
+            JArray listOfPhotos = JArray.Parse(_callApi("photos",pageNumber).ToString());
             var photos = new List<JToken>();
             foreach (var i in listOfPhotos)
             {
