@@ -20,11 +20,14 @@
 
 .gallery-random-background-overlay
 {
-    width:100%;
-    height:100%;
-    background-color:rgba(0,0,0,0.6);
+width: 101%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
     position: absolute;
     top: 0;
+    overflow-y: scroll;
+    right: -17px;
+    padding-right: 0px;
 }
 
 .gallery-image-container
