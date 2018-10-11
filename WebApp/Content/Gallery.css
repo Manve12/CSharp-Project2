@@ -102,3 +102,11 @@
     padding: 2rem 25%;
     font-size: 24px;
 }
+
+.gallery-image:hover .gallery-image-overlay{
+    display:block;
+}
+
+.gallery-image-overlay-button:hover{
+    color:white;
+}
