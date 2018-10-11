@@ -1,7 +1,47 @@
 ﻿
-@{
-    ViewBag.Title = "Index";
-}
+<div class="comment-wrapper">
+    @* 
+    
+    SECTION1:
+        IMG
+        AUTHOR:
+            Name
+            Location
+            Instagram
+            Twitter
+            Portfolio
 
-<h2>Index</h2>
+    SECTION2:
+        Comments:
+            Name of user
+            Comment
+            
+        Edit Field:
+            Button to submit
+     *@
 
+    <div class="comment-section">
+        <img class="comment-image" src="@ViewBag.PhotoData["urls"]["regular"]"/>
+        <img class="comment-author-photo" src="@ViewBag.UserData["profile_image"]["medium"]" />
+        <ul class="comment-author">
+           <li class="comment-author-name">@ViewBag.PhotoData["user"]["name"]</li> 
+           <li class="comment-author-location">@ViewBag.UserData["location"]</li>
+           <li class="comment-author-bio">@ViewBag.PhotoData["user"]["bio"]</li>
+           <li class="comment-author-portfolio">@ViewBag.PhotoData["user"]["portfolio_url"]</li>
+        </ul>
+    </div>
+    <div class="comment-section comment-section-right">
+        <div class="comment-comments">
+            @for(int i = 0; i < 12; i ++){
+            <div class="comment">
+                <div class="comment-name">Name</div>
+                <div class="comment-text">This would be where the comment would be loaded</div>
+            </div>
+            }
+        </div>
+        <form class="comment-comments-input" method="post">
+            <textarea style="resize:none;" class="commentInput" id="comment-input"></textarea>
+            <input class="btn comment-submit" type="submit" name="Submit"/>
+        </form>
+    </div>
+</div>

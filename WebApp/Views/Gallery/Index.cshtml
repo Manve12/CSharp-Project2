@@ -20,7 +20,7 @@
 
                             <ul class="gallery-image-overlay-comment-wrapper">
                                 <li class=""><i class="fas fa-comment"></i> 0</li>
-                                <a href="@Url.Action("Index","Comment")"><li class="btn gallery-image-overlay-comment-button">View Comments</li></a>
+                                <a href="@Url.Action("Index","Comment",new { id = i["id"]})"><li class="btn gallery-image-overlay-comment-button">View Comments</li></a>
                             </ul>
 
                             <div class="gallery-image-overlay-author">

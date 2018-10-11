@@ -1,0 +1,92 @@
+﻿.comment-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 98%;
+    height: 84rem;
+    background-color: rgba(0,0,0,0.6);
+    margin: 20px;
+    color: white;
+}
+
+.comment-image {
+    width:100%;
+    height:75%;
+}
+
+.comment-section{
+    padding: 20px;
+    width: 50%;
+    height: 100%;
+    padding-right: 0;
+    position:absolute;
+}
+
+.comment-section-right {
+    right:0;
+}
+
+/* AUTHOR */
+
+.comment-author-photo {
+    width:12.5%;
+}
+
+.comment-author {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+}
+
+.comment-author-name {
+}
+
+.comment-author-location {
+}
+
+.comment-author-bio {
+}
+
+.comment-author-portfolio {
+}
+
+/* COMMENT */
+.comment-comments{
+    width:98%;
+    height:85%;
+    background-color:rgba(0,0,0,0.6);
+    margin-bottom:20px;
+    overflow-y:scroll;
+}
+
+.comment-comments-input{
+    width:100%;
+}
+
+.comment-comments-input textarea{
+    max-width:100%;
+    width:80rem;
+    height:10.2rem;    
+}
+
+.comment-comments-input div{
+    background-color:rgba(255,255,255,0.6);
+    border-radius:0;
+    padding:40px 25px;
+}
+
+.comment{
+    background-color:rgba(255,255,255,0.6);
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.comment-name{
+    text-align:center;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.comment-text{
+
+}
