@@ -13,6 +13,7 @@
             {
                 <div class="gallery-image">
                     <img src="@i["urls"]["regular"]" />
+                    <div class="gallery-image-overlay"></div>
                 </div>
             }
 
@@ -21,15 +22,11 @@
                     @{
                         foreach (int i in ViewBag.PageNumbers)
                         {
-                            <li class="gallery-page-number" id="@(i+1)"><a href="@Url.Action("Index", "Gallery", new { id = (i+1) })">@(i + 1)</a></li>
+                            <li class="gallery-page-number" id="@(i+1)">
+                                <a href="@Url.Action("Index", "Gallery", new { id = (i+1) })">@(i + 1)</a>
+                            </li>
                         }
                     }
-
-
-                    @*@for (int i = ViewBag.PageNumbers; i < ViewBag.PageNumbers.Length; i++)
-                    {
-                        <li class="gallery-page-number" id="@(i+1)"><a href="@Url.Action("Index", "Gallery", new { id = (i+1) })">@(i + 1)</a></li>
-                    }*@
                 </ul>
             </div>
         </div>
