@@ -37,10 +37,11 @@ namespace WebApp.Controllers
                 listOfPageNumbers.Add(i);
             }
 
+            //Send data to view
             ViewBag.PhotoList = GetPhotos(pageNumber);
-           
             ViewData["RandomImageUrl"] = GetRandomImageUrl();
             ViewBag.PageNumbers = listOfPageNumbers;
+            
             return View();
         }
 
