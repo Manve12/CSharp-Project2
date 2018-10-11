@@ -17,6 +17,12 @@
                         <div class="gallery-image-overlay-wrapper">
                             <div class="gallery-image-overlay-title">@i["id"]</div>
                             <div class="gallery-image-overlay-author-likes"><i class="fas fa-heart"></i> @i["likes"]</div>
+
+                            <ul class="gallery-image-overlay-comment-wrapper">
+                                <li class=""><i class="fas fa-comment"></i> 0</li>
+                                <a href="@Url.Action("Comment","Comment")"><li class="btn gallery-image-overlay-comment-button">View Comments</li></a>
+                            </ul>
+
                             <div class="gallery-image-overlay-author">
                                 <img class="gallery-image-overlay-author-profile" src="@i["user"]["profile_image"]["medium"]" />
                                 <div class="gallery-image-overlay-author-name">@i["user"]["name"]</div>
@@ -26,6 +32,7 @@
                                     <li><i class="far fa-address-card"></i> @(i["user"]["portfolio_url"] != null ? i["user"]["portfolio_url"] : "N/A")</li>
                                 </ul>
                             </div>
+
                         </div>
                         <div class="gallery-image-overlay-button-wrapper">
                             <div class="btn gallery-image-overlay-button">View</div>
