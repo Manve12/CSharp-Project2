@@ -1,6 +1,5 @@
 ﻿@{
     ViewBag.Title = "Index";
-    ViewBag.PageNumberLimit = 10;
 }
 
 @using Newtonsoft.Json;
@@ -19,13 +18,18 @@
 
             <div class="gallery-page-number-wrapper">
                 <ul class="gallery-page-number-list">
-                    @for (int i = 0; i < ViewBag.PageNumberLimit; i++)
-                    {
-                        
-                        
+                    @{
+                        foreach (int i in ViewBag.PageNumbers)
+                        {
                             <li class="gallery-page-number" id="@(i+1)"><a href="@Url.Action("Index", "Gallery", new { id = (i+1) })">@(i + 1)</a></li>
-                        
+                        }
                     }
+
+
+                    @*@for (int i = ViewBag.PageNumbers; i < ViewBag.PageNumbers.Length; i++)
+                    {
+                        <li class="gallery-page-number" id="@(i+1)"><a href="@Url.Action("Index", "Gallery", new { id = (i+1) })">@(i + 1)</a></li>
+                    }*@
                 </ul>
             </div>
         </div>

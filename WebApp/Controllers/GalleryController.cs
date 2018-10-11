@@ -25,7 +25,14 @@ namespace WebApp.Controllers
             //depending on the page number work the next set available
             var listOfPageNumbers = new List<int>();
 
-            for (int i = pageNumber - 4; i < pageNumber + 4; i++)
+            var minimumPageNumber = 0;
+            
+            if ((pageNumber - 4) > 0)
+            {
+                minimumPageNumber = pageNumber - 4;
+            }
+
+            for (int i = minimumPageNumber; i < minimumPageNumber + 10; i++)
             {
                 listOfPageNumbers.Add(i);
             }
@@ -33,7 +40,7 @@ namespace WebApp.Controllers
             ViewBag.PhotoList = GetPhotos(pageNumber);
            
             ViewData["RandomImageUrl"] = GetRandomImageUrl();
-            ViewData["PageNumbers"] = listOfPageNumbers;
+            ViewBag.PageNumbers = listOfPageNumbers;
             return View();
         }
 
