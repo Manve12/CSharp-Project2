@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -45,7 +46,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Index(string commentInput, string[] param = null)
         {
-
+            Debug.WriteLine(commentInput);
             return HttpNotFound();
         }
 
