@@ -2,7 +2,6 @@
     //// VARIABLES ////
     var detailsShown = false;
 
-
     /////////////// PAGE NUMBERS //////////////
 
     //load default page number selection
@@ -14,13 +13,13 @@
         $("#1").css("border", "1px solid");
     }
 
-    ////////////// BLUR //////////////
-
     //image blur on hover
     $(".gallery-image img").hover(function () {
-        $(".gallery-image img").css("filter", "blur(5px)");
-        $(this).find("img").css("filter", "blur(0px)");
-        $(this).css("filter","blur(0px)");
+        if (readCookie("ImageBlur").split("=")[1] == "false") {
+            $(".gallery-image img").css("filter", "blur(5px)");
+            $(this).find("img").css("filter", "blur(0px)");
+            $(this).css("filter", "blur(0px)");
+        }
     },
     function () {
         $(".gallery-image img").css("filter", "blur(0px)");
@@ -30,14 +29,15 @@
 
     //gallery image view button handling for blur
     $(".gallery-image-overlay").hover(function () {
-        $(".gallery-image img").css("filter", "blur(5px)");
-        $(this)
-            .find(".gallery-image-overlay-wrapper")
-            .find(".gallery-image-overlay-author")
-            .find("img")
-            .css("filter", "blur(0px)");
-        $(this).prevAll('img').first().css("filter", "blur(0px)");
-        
+        if (readCookie("ImageBlur").split("=")[1] == "false") {
+            $(".gallery-image img").css("filter", "blur(5px)");
+            $(this)
+                .find(".gallery-image-overlay-wrapper")
+                .find(".gallery-image-overlay-author")
+                .find("img")
+                .css("filter", "blur(0px)");
+            $(this).prevAll('img').first().css("filter", "blur(0px)");
+        }
     });
 
     //show/hide the image wrapper (author details etc.)
@@ -46,11 +46,21 @@
             $(this).parent().prev().css("display", "block");
         }
 
-        if (detailsShown == true){
+        if (detailsShown == true) {
             $(this).parent().prev().css("display", "none");
         }
-        
+
         detailsShown = !detailsShown;
     });
 
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
 });

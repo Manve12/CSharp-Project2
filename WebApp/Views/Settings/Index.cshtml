@@ -2,6 +2,27 @@
     ViewBag.Title = "Index";
 }
 
-<div class="settings-wrapper">
+@using System.Diagnostics;
 
+<div class="settings-wrapper">
+    <div class="settings-settings">
+        <div class="setting">
+            <div class="setting-name">Image Blur</div>
+            <form method="POST">
+                @{
+                    if (Request.Cookies["ImageBlur"] != null)
+                    {
+                        if (Request.Cookies["ImageBlur"]["blurGallery"] == "true")
+                        {
+                            <button onclick="location.href='@Url.Action("Index", "Settings")'">ON</button>
+                        }
+                        else
+                        {
+                            <button onclick="location.href='@Url.Action("Index", "Settings")'">OFF</button>
+                        }
+                    }
+                }
+            </form>
+        </div>
+    </div>
 </div>
