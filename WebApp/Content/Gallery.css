@@ -56,6 +56,7 @@
 
 .gallery-page-number-wrapper{
     width:100%;
+    text-align:center;
 }
 
 .gallery-page-number{
@@ -69,11 +70,9 @@
 }
 
 .gallery-page-number-list{
-    position: absolute;
+    display: inline-block;
     margin: 0;
     padding: 0;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
 .gallery-page-number-list:last-child{
@@ -162,6 +161,11 @@
     background-color:rgba(255,255,255,0.6);
     padding:0px 30px;
     border-radius:0;
+    color:white;
+}
+
+.gallery-image-overlay-comment-button:hover{
+    color:white;
 }
 
 .gallery-image-overlay-comment-button:hover{
@@ -199,3 +203,5 @@
     width:100%;
     font-size:18px;
 }
+
+/* MEDIA QUERIES */

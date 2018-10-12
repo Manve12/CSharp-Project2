@@ -48,16 +48,18 @@
             }
 
             <div class="gallery-page-number-wrapper">
-                <ul class="gallery-page-number-list">
-                    @{
-                        foreach (int i in ViewBag.PageNumbers)
-                        {
-                            <li class="gallery-page-number" id="@(i+1)">
-                                <a href="@Url.Action("Index", "Gallery", new { id = (i+1) })">@(i + 1)</a>
-                            </li>
+                
+                    <ul class="gallery-page-number-list">
+                        @{
+                            foreach (int i in ViewBag.PageNumbers)
+                            {
+                                <li class="gallery-page-number" id="@(i+1)">
+                                    <a href="@Url.Action("Index", "Gallery", new { id = (i+1) })">@(i + 1)</a>
+                                </li>
+                            }
                         }
-                    }
-                </ul>
+                    </ul>
+                
             </div>
         </div>
     </div>
