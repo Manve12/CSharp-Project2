@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -16,6 +17,39 @@ namespace WebApp.Controllers
         [HttpGet]
         public ActionResult Index(string id)
         {
+            //trying out new context
+            using (var db = new ApplicationDbContext())
+            {
+                
+
+                var comment = new Comment
+                {
+                    UserComment = "Noice!"
+                };
+
+                Comments _comments = db.Comments.FirstOrDefault(c => c.Name == "test");
+
+                _comments.UserComments.Add(comment);
+
+                db.SaveChanges();
+
+                var comments = new Comments
+                {
+                    Name = "test",
+                    
+                };
+
+                db.Comments.Add(comments);
+                db.SaveChanges();
+                
+                var query = from b in db.Comments orderby b.Name select b;
+                foreach (var item in query)
+                {
+                    Debug.WriteLine(item.Name);
+                }
+            }
+
+
             if (id.Length == 0)
             {
                 return HttpNotFound();
@@ -46,6 +80,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Index(string commentInput, string[] param = null)
         {
+
             Debug.WriteLine(commentInput);
             return HttpNotFound();
         }
