@@ -5,11 +5,18 @@
 <div class="index-wrapper"> <!--wrapper-->
     <h1 class="index-title">Discover More</h1>
     <h3 class="index-phrase">Find opinions about images you love</h3>
-    <button class="index-moreInfo">Want to find out more?</button>
-    @{
-        if (!User.Identity.IsAuthenticated)
-        {
-            <button class="index-signUp">Sign Up</button>
+    <div class="home-buttons">
+        @Html.ActionLink("Want To Find Out More?", "Index", "Gallery", null, new { @class = "index-moreInfo" })
+
+        @{
+            if (!User.Identity.IsAuthenticated)
+            {
+
+                @Html.ActionLink("Sign Up", "Register", "Account", null, new { @class = "index-signUp" })
+
+            }
+
         }
-    }
+    </div>
+
 </div>

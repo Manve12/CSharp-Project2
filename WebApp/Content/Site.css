@@ -1,4 +1,6 @@
-﻿body {
+﻿
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
     overflow-y:hidden;
@@ -101,7 +103,17 @@ position: absolute;
     margin-top:auto;
 }
 
+.index-moreInfo:hover,
+.index-signUp:hover{
+    text-decoration:none;
+    color:white;
+}
+
 .index-signUp{
     margin-left:20px;
     background-color:rgba(255,0,0,0.6);
+}
+
+.home-buttons{
+    height: 5rem;
 }
