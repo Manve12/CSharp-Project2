@@ -1,59 +1,60 @@
 ﻿
 <div class="comment-wrapper">
-    @* 
-    
-    SECTION1:
-        IMG
-        AUTHOR:
-            Name
-            Location
-            Instagram
-            Twitter
-            Portfolio
+    @*
 
-    SECTION2:
-        Comments:
-            Name of user
-            Comment
-            
-        Edit Field:
-            Button to submit
-     *@
+        SECTION1:
+            IMG
+            AUTHOR:
+                Name
+                Location
+                Instagram
+                Twitter
+                Portfolio
+
+        SECTION2:
+            Comments:
+                Name of user
+                Comment
+
+            Edit Field:
+                Button to submit
+    *@
 
     <div class="comment-section">
-        <img class="comment-image" src="@ViewBag.PhotoData["urls"]["regular"]"/>
+        <img class="comment-image" src="@ViewBag.PhotoData["urls"]["regular"]" />
         <img class="comment-author-photo" src="@ViewBag.UserData["profile_image"]["medium"]" />
         <ul class="comment-author">
-           <li class="comment-author-name">@ViewBag.PhotoData["user"]["name"]</li> 
-           <li class="comment-author-location">@ViewBag.UserData["location"]</li>
-           <li class="comment-author-bio">@ViewBag.PhotoData["user"]["bio"]</li>
-           <li class="comment-author-portfolio">@ViewBag.PhotoData["user"]["portfolio_url"]</li>
+            <li class="comment-author-name">@ViewBag.PhotoData["user"]["name"]</li>
+            <li class="comment-author-location">@ViewBag.UserData["location"]</li>
+            <li class="comment-author-bio">@ViewBag.PhotoData["user"]["bio"]</li>
+            <li class="comment-author-portfolio">@ViewBag.PhotoData["user"]["portfolio_url"]</li>
         </ul>
     </div>
     <div class="comment-section comment-section-right">
         <div class="comment-comments">
-
             @{
                 if (ViewBag.Comments != null)
                 {
                     foreach (var item in ViewBag.Comments)
                     {
-                    <div class="comment">
-                        <div class="comment-name">@item.UserName</div>
-                        <div class="comment-text">@item.UserComment</div>
-                    </div>
-                    }
-                } else {
                         <div class="comment">
-                            <div class="comment-name">No Comments?</div>
-                            <div class="comment-text">Be the first one to give opinion about this image</div>
-                        </div> 
+                            <div class="comment-name">@item.UserName</div>
+                            <div class="comment-text">@item.UserComment</div>
+                        </div>
                     }
                 }
+                else
+                {
+                    <div class="comment">
+                        <div class="comment-name">No Comments?</div>
+                        <div class="comment-text">Be the first one to give opinion about this image</div>
+                    </div>
+                }
+            }
         </div>
         <form class="comment-comments-input" method="post">
             <textarea maxlength="500" style="resize:none;" class="commentInput" id="commentInput" name="commentInput"></textarea>
-            <input class="btn comment-submit" type="submit"/>
+            <input class="btn comment-submit" type="submit" />
         </form>
 
     </div>

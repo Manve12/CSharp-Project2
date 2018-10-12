@@ -1,35 +1,42 @@
 ﻿.comment-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 98%;
-    height: 84rem;
-    background-color: rgba(0,0,0,0.6);
-    margin: 20px;
-    color: white;
+    display:flex;
+    flex-wrap:wrap;
+    width:101%;
+    height:100%;
+    background-color:rgba(0,0,0,0.6);
+    padding:10px;
+    color:white;
+    position:absolute;
+    overflow-y:scroll;
+}
+
+.comment-section{
+    flex:1;
+    width:100%;
+    padding:10px;
+    height:100%;
 }
 
 .comment-image {
     width:100%;
-    height:75%;
+    min-width:300px;
+    max-height:100%;
 }
 
-.comment-section{
-    padding: 20px;
-    width: 50%;
-    height: 100%;
-    padding-right: 0;
-    position:absolute;
-}
-
-.comment-section-right {
-    right:0;
+.body-content{
+    position: fixed;
+    overflow: hidden;
+    top: 8vh;
+    left: 1vw;
+    width: 98vw;
+    height: 90vh;
 }
 
 /* AUTHOR */
 
 .comment-author-photo {
     width:12.5%;
+    min-width:100px;
 }
 
 .comment-author {
@@ -38,22 +45,10 @@
     padding:0;
 }
 
-.comment-author-name {
-}
-
-.comment-author-location {
-}
-
-.comment-author-bio {
-}
-
-.comment-author-portfolio {
-}
-
 /* COMMENT */
 .comment-comments{
     width:98%;
-    height:85%;
+    height: 92%;
     background-color:rgba(0,0,0,0.6);
     margin-bottom:20px;
     overflow-y:scroll;
@@ -61,12 +56,15 @@
 
 .comment-comments-input{
     width:100%;
+    justify-content: center;
+    display: flex;
 }
 
 .comment-comments-input textarea{
     max-width:100%;
-    width:80rem;
-    height:10.2rem;    
+    resize: none;
+    flex: 4;
+    margin-right: 10px;  
 }
 
 .comment-comments-input div{
@@ -89,4 +87,40 @@
 
 .comment-text{
     word-wrap: break-word;
+}
+
+.comment-submit{
+    flex: 1;
+    margin-right: 20px;
+}
+
+/* MEDIA QUERIES */
+@media (max-width:635px){
+    .comment-section{
+        
+    }
+
+    .comment-image{
+        width:100%;
+        height:72.5%;
+    }
+}
+
+@media (min-width:635px){
+    .comment-image{
+        width:100%;
+        height:72.5%;
+    }
+}
+
+@media(max-width:645px)
+{
+    .comment-section-right{
+        margin-top:20px;
+        margin-bottom:10px;
+    }
+
+    .body-content{
+        width:96vw;
+    }
 }
