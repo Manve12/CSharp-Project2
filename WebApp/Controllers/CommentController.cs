@@ -69,6 +69,8 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Index(string commentInput, string[] param = null)
         {
+
+
             var photoId = (System.Web.HttpContext.Current.Request.Url.AbsoluteUri).Split('/').Last();
 
             var username = User.Identity.Name;
@@ -77,8 +79,6 @@ namespace WebApp.Controllers
             {                
                 using (var db = new ApplicationDbContext())
                 {
-                    
-
                     //select image from database
                     Comments _comments = db.Comments.FirstOrDefault(c => c.PhotoId == photoId);
 

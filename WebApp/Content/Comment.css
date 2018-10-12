@@ -88,5 +88,5 @@
 }
 
 .comment-text{
-
+    word-wrap: break-word;
 }
