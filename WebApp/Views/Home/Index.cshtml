@@ -16,5 +16,10 @@
     <h1 class="index-title">Discover More</h1>
     <h3 class="index-phrase">Find opinions about images you love</h3>
     <button class="index-moreInfo">Want to find out more?</button>
-    <button class="index-signUp">Sign Up</button>
+    @{
+        if (!User.Identity.IsAuthenticated)
+        {
+            <button class="index-signUp">Sign Up</button>
+        }
+    }
 </div>
