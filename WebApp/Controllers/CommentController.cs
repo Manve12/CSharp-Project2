@@ -17,39 +17,6 @@ namespace WebApp.Controllers
         [HttpGet]
         public ActionResult Index(string id)
         {
-            //trying out new context
-            using (var db = new ApplicationDbContext())
-            {
-                
-
-                var comment = new Comment
-                {
-                    UserComment = "Noice!"
-                };
-
-                Comments _comments = db.Comments.FirstOrDefault(c => c.Name == "test");
-
-                _comments.UserComments.Add(comment);
-
-                db.SaveChanges();
-
-                var comments = new Comments
-                {
-                    Name = "test",
-                    
-                };
-
-                db.Comments.Add(comments);
-                db.SaveChanges();
-                
-                var query = from b in db.Comments orderby b.Name select b;
-                foreach (var item in query)
-                {
-                    Debug.WriteLine(item.Name);
-                }
-            }
-
-
             if (id.Length == 0)
             {
                 return HttpNotFound();
@@ -57,18 +24,32 @@ namespace WebApp.Controllers
 
             try
             {
-                dynamic photoData = GetPhoto(id);
-
-                dynamic userData = GetUser(photoData["user"]["username"].ToString());
-
-                if (userData == null)
+                
+                using (var db = new ApplicationDbContext())
                 {
-                    return HttpNotFound();
+                    //get comments    
+                    Comments comments = db.Comments.FirstOrDefault(c => c.Name == id);
+
+                    if (comments != null)
+                    {
+                        ViewBag.Comments = comments.UserComments;
+                    } else
+                    {
+                        ViewBag.Comments = null;
+                    }
+
+                    dynamic photoData = GetPhoto(id);
+
+                    dynamic userData = GetUser(photoData["user"]["username"].ToString());
+
+                    if (userData == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    ViewBag.PhotoData = photoData;
+                    ViewBag.UserData = userData;
                 }
-
-                ViewBag.PhotoData = photoData;
-                ViewBag.UserData = userData;
-
                 return View();
             }
             catch (Exception)
@@ -77,12 +58,42 @@ namespace WebApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Add new comment after post
+        /// </summary>
+        /// <param name="commentInput">comment to add to db</param>
+        /// <param name="param"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Index(string commentInput, string[] param = null)
         {
+            var photoId = (System.Web.HttpContext.Current.Request.Url.AbsoluteUri).Split('/').Last();
 
-            Debug.WriteLine(commentInput);
-            return HttpNotFound();
+            if (commentInput.Length != 0)
+            {                
+                using (var db = new ApplicationDbContext())
+                {
+                    //select image from database
+                    Comments _comments = db.Comments.FirstOrDefault(c => c.Name == photoId);
+
+                    if (_comments == null)
+                    {
+                        db.Comments.Add(new Comments { Name = photoId });
+                        db.SaveChanges();
+                        _comments = db.Comments.FirstOrDefault(c => c.Name == photoId);
+                    }
+                    
+                    var comment = new Comment
+                    {
+                        UserComment = commentInput
+                    };
+
+                    _comments.UserComments.Add(comment);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index", new { id = photoId });
         }
 
         private static JToken GetPhoto(string id)

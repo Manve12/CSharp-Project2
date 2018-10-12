@@ -5,7 +5,6 @@ namespace WebApp.Models
     public class Comments {
         public string PhotoId { get; set; }
         public int CommentsId { get; set; }
-        public string Name { get; set; }
 
         public virtual List<Comment> UserComments { get; set; }
     }
