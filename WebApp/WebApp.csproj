@@ -183,6 +183,14 @@
     <Compile Include="Migrations\201810120827356_AddedPhotoId.Designer.cs">
       <DependentUpon>201810120827356_AddedPhotoId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810120900218_UpdatedModelToUsePhotoId.cs" />
+    <Compile Include="Migrations\201810120900218_UpdatedModelToUsePhotoId.Designer.cs">
+      <DependentUpon>201810120900218_UpdatedModelToUsePhotoId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810120901349_AddedUserName.cs" />
+    <Compile Include="Migrations\201810120901349_AddedUserName.Designer.cs">
+      <DependentUpon>201810120901349_AddedUserName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommentModel.cs" />
@@ -273,6 +281,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810120827356_AddedPhotoId.resx">
       <DependentUpon>201810120827356_AddedPhotoId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810120900218_UpdatedModelToUsePhotoId.resx">
+      <DependentUpon>201810120900218_UpdatedModelToUsePhotoId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810120901349_AddedUserName.resx">
+      <DependentUpon>201810120901349_AddedUserName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApp.Models;
 
 namespace WebApp.Controllers
@@ -28,7 +29,7 @@ namespace WebApp.Controllers
                 using (var db = new ApplicationDbContext())
                 {
                     //get comments    
-                    Comments comments = db.Comments.FirstOrDefault(c => c.Name == id);
+                    Comments comments = db.Comments.FirstOrDefault(c => c.PhotoId == id);
 
                     if (comments != null)
                     {
@@ -69,23 +70,29 @@ namespace WebApp.Controllers
         {
             var photoId = (System.Web.HttpContext.Current.Request.Url.AbsoluteUri).Split('/').Last();
 
+            var username = User.Identity.Name;
+
             if (commentInput.Length != 0)
             {                
                 using (var db = new ApplicationDbContext())
                 {
+                    
+
                     //select image from database
-                    Comments _comments = db.Comments.FirstOrDefault(c => c.Name == photoId);
+                    Comments _comments = db.Comments.FirstOrDefault(c => c.PhotoId == photoId);
 
                     if (_comments == null)
                     {
-                        db.Comments.Add(new Comments { Name = photoId });
+                        db.Comments.Add(new Comments { PhotoId = photoId, UserComments = new List<Comment>() });
                         db.SaveChanges();
-                        _comments = db.Comments.FirstOrDefault(c => c.Name == photoId);
+                        _comments = db.Comments.FirstOrDefault(c => c.PhotoId == photoId);
+
                     }
-                    
+
                     var comment = new Comment
                     {
-                        UserComment = commentInput
+                        UserComment = commentInput,
+                        UserName = username
                     };
 
                     _comments.UserComments.Add(comment);
