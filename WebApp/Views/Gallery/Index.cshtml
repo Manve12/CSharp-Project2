@@ -19,7 +19,13 @@
                             <div class="gallery-image-overlay-author-likes"><i class="fas fa-heart"></i> @i["likes"]</div>
 
                             <ul class="gallery-image-overlay-comment-wrapper">
-                                <li class=""><i class="fas fa-comment"></i> 0</li>
+                                @foreach (var photo in ViewBag.CommentList) {
+                                                var p = photo.PhotoId;
+                                                if (photo.PhotoId.ToString() == i["id"].ToString())
+                                                {
+                                        <li class=""><i class="fas fa-comment"></i> @photo.CommentAmount</li>
+                                    }
+                                }
                                 <a href="@Url.Action("Index","Comment",new { id = i["id"]})"><li class="btn gallery-image-overlay-comment-button">View Comments</li></a>
                             </ul>
 

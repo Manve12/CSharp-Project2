@@ -37,11 +37,28 @@ namespace WebApp.Controllers
                 listOfPageNumbers.Add(i);
             }
 
+            //get all of the photos
+            var photoList = GetPhotos(pageNumber);
+
+            //get photo comments and store in a new list
+            var photoCommentList = new List<PhotoModel>();
+
+            foreach(var photo in photoList)
+            {
+                photoCommentList.Add(
+                    new PhotoModel {
+                        PhotoId = photo["id"].ToString(),
+                        CommentAmount = _getCommentAmount(photo["id"].ToString())
+                    });
+            }
+
             //Send data to view
-            ViewBag.PhotoList = GetPhotos(pageNumber);
+            
+            ViewBag.PhotoList = photoList;
             ViewData["RandomImageUrl"] = GetRandomImageUrl();
             ViewBag.PageNumbers = listOfPageNumbers;
-            
+            ViewBag.CommentList = photoCommentList;
+
             return View();
         }
 
@@ -83,6 +100,21 @@ namespace WebApp.Controllers
                 photos.Add(i);
             }
             return photos;
+        }
+
+        private static int _getCommentAmount(string photoId)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var photo = db.Comments.FirstOrDefault(p => p.PhotoId == photoId);
+
+                if (photo == null)
+                {
+                    return 0;
+                }
+                return photo.UserComments.Count();
+                
+            }
         }
     }
 }
