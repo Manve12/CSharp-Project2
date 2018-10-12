@@ -12,6 +12,7 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         // GET: Comment
