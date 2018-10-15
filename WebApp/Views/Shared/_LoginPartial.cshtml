@@ -7,9 +7,12 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            <a href="">@("Hello " + User.Identity.GetUserName() + "!")</a>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Settings")
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li>
+            @Html.ActionLink("Settings", "Index", "Settings")
+        </li>
         <li>
             @Html.ActionLink("Gallery", "Index", "Gallery")
         </li>
