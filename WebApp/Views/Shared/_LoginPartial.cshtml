@@ -20,7 +20,8 @@
             if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Gallery")
             {
                 <li>
-                    @Html.ActionLink("Search", "Index", "Search")
+                    @*@Html.ActionLink("Search", "Index", "Search", null, new { @class="navigation-search-button" })*@
+                    <button class="navigation-search-button" type="button">Search</button>
                 </li>
             }
         }
