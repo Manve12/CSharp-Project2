@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Net;
 using System.Web.Mvc;
 
 namespace WebApp.Controllers
@@ -12,9 +14,9 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search()
+        public ActionResult Search(string SearchInput)
         {
-            return RedirectToAction("Index", "Gallery");
+            return RedirectToAction("Index", "Gallery", new { id = SearchInput});
         }
 
         [HttpPost]
