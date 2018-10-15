@@ -1,4 +1,12 @@
 ﻿$(".navigation-search-button").click(function () {
-    alert("Clicked search");
-    $("#search-wrapper").html( "<div>TEST DONE</div>");
+    
+    //$.ajax({
+    //    type: "POST",
+    //    url: '@Url.Content("~/Search/Index")',
+    //    data: {},
+    //    success: function (result) {
+    //        $("#search-wrapper").html(result);
+    //    }
+    //});
+    $("#search-wrapper").load('/Search/Index');
 });

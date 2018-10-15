@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="~/Content/Gallery.css" type="text/css" />
     <link rel="stylesheet" href="~/Content/Comment.css" type="text/css" />
     <link rel="stylesheet" href="~/Content/Settings.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/Search.css" type="text/css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -42,9 +43,10 @@
     
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/Search.js")
     @RenderSection("scripts", required: false)
     <script src="~/Scripts/Account.js"></script>
     <script src="~/Scripts/Gallery.js"></script>
-    <script src="~/Scripts/Search.js"></script>
+    
 </body>
 </html>

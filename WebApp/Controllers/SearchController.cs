@@ -7,7 +7,7 @@ namespace WebApp.Controllers
         // GET: Search
         public PartialViewResult Index()
         {
-            return PartialView("_Index.html");
+            return PartialView("_Index");
         }
     }
 }

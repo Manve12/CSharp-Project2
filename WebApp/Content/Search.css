@@ -1,0 +1,9 @@
+﻿#search-wrapper{
+    position: absolute;
+    color: white;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
