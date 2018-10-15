@@ -5,10 +5,44 @@
     position:absolute;
 }
 
-.settings-settings{
-
+.settings-title{
+    text-align:center;
+    font-size:32px;
+    color:white;
 }
 
-.setting{
+.setting-form{
+    display: flex;
+    flex: 1;
+    width: 50%;
+    flex-wrap: wrap;
+    margin: auto;
+    color: white;
+    margin-top: 10px;
+}
 
+.setting-name{
+    flex-grow: 1;
+    font-size: 24px;
+}
+
+.setting-button{
+    flex-grow: 1;
+    flex-grow: 1;
+    background-color: rgba(255,255,255,0.6);
+    border: none;
+    color: white;
+    font-size: 24px;
+}
+
+.setting-button-on{
+    background-color:rgba(0,255,0,0.6);
+}
+
+.setting-button-off{
+    background-color:rgba(255,0,0,0.6);
+}
+
+.uppercase{
+    text-transform:uppercase;
 }
