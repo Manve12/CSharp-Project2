@@ -1,12 +1,14 @@
 ﻿$(".navigation-search-button").click(function () {
+    var lastElement = window.location.href.split('/');
+    lastElement = lastElement[lastElement.length - 1];
     
-    //$.ajax({
-    //    type: "POST",
-    //    url: '@Url.Content("~/Search/Index")',
-    //    data: {},
-    //    success: function (result) {
-    //        $("#search-wrapper").html(result);
-    //    }
-    //});
-    $("#search-wrapper").load('/Search/Index');
+    if (!$.isNumeric(lastElement)) {
+        lastElement = 1;
+    }
+
+    $("#search-container").load('/Search/Index/'+lastElement);
+});
+
+$("form").on("submit", function (e) {
+    e.preventDefault();
 });

@@ -1,3 +1,16 @@
-﻿<div>
-    TESTING!!
+﻿<div class="search-wrapper">
+    @using (Html.BeginForm("Search", "Search", FormMethod.Post,new { @class="search-form"}))
+    {
+        var lastElement = (System.Web.HttpContext.Current.Request.Url.AbsoluteUri).Split('/').Last();
+        @Html.Hidden("returnUrlId", lastElement)
+        @Html.TextBox("Search")
+        <button class="search-button-search">Search</button>
+    }
 </div>
+
+@using (Html.BeginForm("Close", "Search",FormMethod.Post))
+{
+    var lastElement = (HttpContext.Current.Request.Url.AbsoluteUri).Split('/').Last();
+    @Html.Hidden("returnUrlId", lastElement)
+    <button class="search-button-close">X</button>
+}

@@ -1,9 +1,24 @@
-﻿#search-wrapper{
+﻿.search-wrapper{
     position: absolute;
     color: white;
     z-index: 1;
     top: 0;
     left: 0;
     width: 100%;
+    background-color:rgba(0,0,0,0.6);
+    height:100%;
 }
 
+.search-form{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.search-button-close{
+    position:absolute;
+    z-index:1;
+    right:0;
+    margin:10px;
+}
