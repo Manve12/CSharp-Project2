@@ -16,6 +16,14 @@
         <li>
             @Html.ActionLink("Gallery", "Index", "Gallery")
         </li>
+        @{
+            if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Gallery")
+            {
+                <li>
+                    @Html.ActionLink("Search", "Index", "Search")
+                </li>
+            }
+        }
     </ul>
     }
 }
