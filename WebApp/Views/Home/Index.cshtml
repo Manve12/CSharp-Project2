@@ -3,20 +3,20 @@
 }
 
 <div class="index-wrapper"> <!--wrapper-->
-    <h1 class="index-title">Discover More</h1>
-    <h3 class="index-phrase">Find opinions about images you love</h3>
-    <div class="home-buttons">
-        @Html.ActionLink("Want To Find Out More?", "Index", "Gallery", null, new { @class = "index-moreInfo" })
+    <div class="home-wrapper">
+        <h1 class="index-title">Discover More</h1>
+        <h3 class="index-phrase">Find opinions about images you love</h3>
+        <div class="home-buttons">
+            @Html.ActionLink("Want To Find Out More?", "Index", "Gallery", null, new { @class = "index-moreInfo" })
+            @{
+                if (!User.Identity.IsAuthenticated)
+                {
 
-        @{
-            if (!User.Identity.IsAuthenticated)
-            {
+                    @Html.ActionLink("Sign Up", "Register", "Account", null, new { @class = "index-signUp" })
 
-                @Html.ActionLink("Sign Up", "Register", "Account", null, new { @class = "index-signUp" })
+                }
 
             }
-
-        }
+        </div>
     </div>
-
 </div>
