@@ -14,13 +14,13 @@
             @Html.ActionLink("Settings", "Index", "Settings")
         </li>
         <li>
-            @Html.ActionLink("Gallery", "Index", "Gallery")
+            @*<a href="/Gallery/Index">Gallery</a>*@
+            @Html.ActionLink("Gallery", "Index", "Gallery", new { id=string.Empty}, null);
         </li>
         @{
             if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Gallery")
             {
                 <li>
-                    @*@Html.ActionLink("Search", "Index", "Search", null, new { @class="navigation-search-button" })*@
                     <a class="navigation-search-button">Search</a>
                 </li>
             }

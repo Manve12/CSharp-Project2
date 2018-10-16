@@ -16,7 +16,7 @@ namespace WebApp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}/{queryId}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional, queryId = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = "", queryId = "" }
             );
         }
     }
