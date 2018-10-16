@@ -56,7 +56,15 @@
                             foreach (int i in ViewBag.PageNumbers)
                             {
                                 <li class="gallery-page-number" id="@(i+1)">
-                                    <a href="@Url.Action("Index", "Gallery", new { id = (i+1) })">@(i + 1)</a>
+                                    @if (ViewBag.PageNumberPrefix != null)
+                                    {
+                                        var newI = i + 1;
+                                        <a href="@(Url.Action("Index", "Gallery", new { id = ViewBag.PageNumberPrefix, queryId = newI }))">@newI</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Index", "Gallery", new { id = (i + 1) })">@(i + 1)</a>
+                                    }
                                 </li>
                             }
                         }

@@ -40,7 +40,11 @@ namespace WebApp.Controllers
                 string queryString = searchId[5];
                 string queryPageNumber = searchId[6];
                 int pageNumber = 1;
-                int.TryParse(queryPageNumber, out pageNumber);
+                bool pageNumberParsedToInt = int.TryParse(queryPageNumber, out pageNumber);
+                if (!pageNumberParsedToInt)
+                {
+                    return HttpNotFound();
+                }
                 return RenderGalleryByText(queryString, pageNumber);
             }
             else
@@ -86,6 +90,7 @@ namespace WebApp.Controllers
 
             ViewBag.PhotoList = photoList;
             ViewData["RandomImageUrl"] = GetRandomImageUrl();
+            ViewBag.PageNumberPrefix = searchQuery;
             ViewBag.PageNumbers = listOfPageNumbers;
             ViewBag.CommentList = photoCommentList;
 
