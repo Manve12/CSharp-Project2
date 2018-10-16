@@ -26,7 +26,7 @@ namespace WebApp.Controllers
             
             if (searchId.Length == 6)
             {
-                searchId = searchId[searchId.Length - 1];
+                searchId = searchId[5];
                 if (isNumeric(searchId))
                 {
                     int pageId;
@@ -34,7 +34,16 @@ namespace WebApp.Controllers
                     return RenderGalleryByNumber(pageId);
                 }
                 return RenderGalleryByText(searchId, 1);
-            } else
+            }
+            if (searchId.Length == 7) {
+                //get query string
+                string queryString = searchId[5];
+                string queryPageNumber = searchId[6];
+                int pageNumber = 1;
+                int.TryParse(queryPageNumber, out pageNumber);
+                return RenderGalleryByText(queryString, pageNumber);
+            }
+            else
             {
                 searchId = 1;
                 return RenderGalleryByNumber(searchId);
@@ -58,7 +67,7 @@ namespace WebApp.Controllers
                 listOfPageNumbers.Add(i);
             }
 
-            var photoList = GetPhotos("search/photos",1,searchQuery);
+            var photoList = GetPhotos("search/photos",pageNumber,searchQuery);
 
             //get photo comments and store in a new list
             var photoCommentList = new List<PhotoModel>();
