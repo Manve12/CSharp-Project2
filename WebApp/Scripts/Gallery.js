@@ -29,14 +29,17 @@
 
     //gallery image view button handling for blur
     $(".gallery-image-overlay").hover(function () {
-        if (readCookie("ImageBlur").split("=")[1] == "false") {
-            $(".gallery-image img").css("filter", "blur(5px)");
-            $(this)
-                .find(".gallery-image-overlay-wrapper")
-                .find(".gallery-image-overlay-author")
-                .find("img")
-                .css("filter", "blur(0px)");
-            $(this).prevAll('img').first().css("filter", "blur(0px)");
+        
+        if (readCookie("ImageBlur") != null) {
+            if (readCookie("ImageBlur").split("=")[1] == "false") {
+                $(".gallery-image img").css("filter", "blur(5px)");
+                $(this)
+                    .find(".gallery-image-overlay-wrapper")
+                    .find(".gallery-image-overlay-author")
+                    .find("img")
+                    .css("filter", "blur(0px)");
+                $(this).prevAll('img').first().css("filter", "blur(0px)");
+            }
         }
     });
 

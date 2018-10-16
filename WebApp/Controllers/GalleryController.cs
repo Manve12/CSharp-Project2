@@ -15,6 +15,7 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class GalleryController : Controller
     {
         // GET: Gallery
