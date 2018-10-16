@@ -20,13 +20,75 @@ namespace WebApp.Controllers
         // GET: Gallery
         public ActionResult Index()
         {
-            var pageNumber = _getID();
+            
+            dynamic searchId = _getID();
+            
+            if (searchId.Length == 6)
+            {
+                searchId = searchId[searchId.Length - 1];
+                if (isNumeric(searchId))
+                {
+                    int pageId;
+                    int.TryParse(searchId, out pageId);
+                    return RenderGalleryByNumber(pageId);
+                }
+                return RenderGalleryByText(searchId, 1);
+            } else
+            {
+                searchId = 1;
+                return RenderGalleryByNumber(searchId);
+            }
+        }
 
+        public ActionResult RenderGalleryByText(string searchQuery, int pageNumber)
+        {
             //depending on the page number work the next set available
             var listOfPageNumbers = new List<int>();
 
             var minimumPageNumber = 0;
-            
+
+            if ((pageNumber - 4) > 0)
+            {
+                minimumPageNumber = pageNumber - 4;
+            }
+
+            for (int i = minimumPageNumber; i < minimumPageNumber + 10; i++)
+            {
+                listOfPageNumbers.Add(i);
+            }
+
+            var photoList = GetPhotos("search/photos",1,searchQuery);
+
+            //get photo comments and store in a new list
+            var photoCommentList = new List<PhotoModel>();
+
+            foreach (var photo in photoList)
+            {
+                photoCommentList.Add(
+                    new PhotoModel
+                    {
+                        PhotoId = photo["id"].ToString(),
+                        CommentAmount = _getCommentAmount(photo["id"].ToString())
+                    });
+            }
+
+            //Send data to view
+
+            ViewBag.PhotoList = photoList;
+            ViewData["RandomImageUrl"] = GetRandomImageUrl();
+            ViewBag.PageNumbers = listOfPageNumbers;
+            ViewBag.CommentList = photoCommentList;
+
+            return View();
+        }
+
+        public ActionResult RenderGalleryByNumber(int pageNumber)
+        {
+            //depending on the page number work the next set available
+            var listOfPageNumbers = new List<int>();
+
+            var minimumPageNumber = 0;
+
             if ((pageNumber - 4) > 0)
             {
                 minimumPageNumber = pageNumber - 4;
@@ -38,22 +100,23 @@ namespace WebApp.Controllers
             }
 
             //get all of the photos
-            var photoList = GetPhotos(pageNumber);
+            var photoList = GetPhotos("photos",pageNumber);
 
             //get photo comments and store in a new list
             var photoCommentList = new List<PhotoModel>();
 
-            foreach(var photo in photoList)
+            foreach (var photo in photoList)
             {
                 photoCommentList.Add(
-                    new PhotoModel {
+                    new PhotoModel
+                    {
                         PhotoId = photo["id"].ToString(),
                         CommentAmount = _getCommentAmount(photo["id"].ToString())
                     });
             }
 
             //Send data to view
-            
+
             ViewBag.PhotoList = photoList;
             ViewData["RandomImageUrl"] = GetRandomImageUrl();
             ViewBag.PageNumbers = listOfPageNumbers;
@@ -62,25 +125,34 @@ namespace WebApp.Controllers
             return View();
         }
 
-        private static int _getID()
+        private static dynamic _getID()
         {
-            var lastElement = (System.Web.HttpContext.Current.Request.Url.AbsoluteUri).Split('/').Last();
-            int id;
-            bool isNumeric;
-            isNumeric = int.TryParse(lastElement,out id);
-            if (isNumeric)
-            {
-                return id;
-            }
-            return 1;
+            return (System.Web.HttpContext.Current.Request.Url.AbsoluteUri)
+                                .Split('/');
         }
 
-        private static dynamic _callApi(string urlSection, int pageNumber = 1)
+        private static dynamic _callApi(string urlSection, int pageNumber = 1, string searchQuery = null)
         {
-            var url = "https://api.unsplash.com/" + urlSection + "?page=" + pageNumber + "&client_id=451f6851f8873903472e4ae17e9bac7afbe0a6ef4959cdca25b3ca195fdf22d3";
-            var jsonData = new WebClient().DownloadString(url);
-            dynamic obj = JsonConvert.DeserializeObject(jsonData);
-            
+            string url;
+            string jsonData;
+            dynamic obj;
+            if (searchQuery == null)
+            {
+                url = "https://api.unsplash.com/" + urlSection + "?page=" + pageNumber + "&client_id=451f6851f8873903472e4ae17e9bac7afbe0a6ef4959cdca25b3ca195fdf22d3";
+                jsonData = new WebClient().DownloadString(url);
+                obj = JsonConvert.DeserializeObject(jsonData);
+            }
+            else
+            {
+                url = "https://api.unsplash.com/"+urlSection+"?query="+searchQuery+"&page="+pageNumber+"&client_id=451f6851f8873903472e4ae17e9bac7afbe0a6ef4959cdca25b3ca195fdf22d3";
+                jsonData = new WebClient().DownloadString(url);
+
+                JObject o = JObject.Parse(jsonData);
+                var h = o["results"].ToString();
+
+                obj = JsonConvert.DeserializeObject(h);            
+            }
+
             return obj;
         }
         
@@ -91,9 +163,17 @@ namespace WebApp.Controllers
             return jsonData["urls"]["full"].Value;
         }
 
-        public static List<JToken> GetPhotos(int pageNumber)
+        public static List<JToken> GetPhotos(string apiDirectory, int pageNumber, string searchQuery = null)
         {
-            JArray listOfPhotos = JArray.Parse(_callApi("photos",pageNumber).ToString());
+            JArray listOfPhotos;
+            if (searchQuery == null)
+            {
+                listOfPhotos = JArray.Parse(_callApi(apiDirectory, pageNumber).ToString());
+            } else
+            {
+                dynamic t = _callApi(apiDirectory, pageNumber, searchQuery).ToString();
+                listOfPhotos = JArray.Parse(t);
+            }
             var photos = new List<JToken>();
             foreach (var i in listOfPhotos)
             {
@@ -115,6 +195,11 @@ namespace WebApp.Controllers
                 return photo.UserComments.Count();
                 
             }
+        }
+
+        private static Boolean isNumeric(string value)
+        {
+            return value.All(Char.IsDigit);
         }
     }
 }
