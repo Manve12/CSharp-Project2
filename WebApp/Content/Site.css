@@ -30,7 +30,7 @@ body {
 /* Navbar buttons */
 .navbar-inverse .navbar-nav > li > a {
     color:white;
-    font-size:2rem;
+    font-size: 1.8rem;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -99,6 +99,12 @@ textarea {
     padding:10px;
     color:white;
     margin:5px
+}
+
+.index-moreInfo:hover,
+.index-signUp:hover{
+    color:white;
+    text-decoration:none;
 }
 
 .index-signUp{
