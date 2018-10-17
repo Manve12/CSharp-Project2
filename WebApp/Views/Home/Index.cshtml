@@ -7,11 +7,18 @@
         <h1 class="index-title">Discover More</h1>
         <h3 class="index-phrase">Find opinions about images you love</h3>
         <div class="home-buttons">
-            @Html.ActionLink("Want To See More?", "Index", "Gallery", null, new { @class = "index-moreInfo uppercase" })
+            
             @{
                 if (!User.Identity.IsAuthenticated)
                 {
+                    @Html.ActionLink("Want To See More?", "Index", "Gallery", null, new { @class = "index-moreInfo uppercase" })
                     @Html.ActionLink("Sign Up!", "Register", "Account", null, new { @class = "index-signUp uppercase" })
+                }
+                else
+                {
+                    @Html.ActionLink("Want To See More?", "Index", "Gallery", null, new { @class = "index-moreInfo index-moreInfo-loggedIn uppercase" })
+                    
+
                 }
             }
         </div>

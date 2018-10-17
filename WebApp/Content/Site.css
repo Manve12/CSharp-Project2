@@ -138,6 +138,10 @@ textarea {
     border-radius: 5px;
 }
 
+/* Button color change after log in */
+.index-moreInfo-loggedIn{
+    background-color:rgba(255,0,0,0.9);
+}
 
 /* MEDIA QUERIES */
 
