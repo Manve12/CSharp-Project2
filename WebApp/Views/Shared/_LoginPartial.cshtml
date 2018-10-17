@@ -14,7 +14,7 @@
             @Html.ActionLink("Settings", "Index", "Settings")
         </li>
         <li>
-            @Html.ActionLink("Gallery", "Index", "Gallery", new { id=string.Empty}, null);
+            @Html.ActionLink("Gallery", "Index", "Gallery", new { id=string.Empty }, null)
         </li>
         @{
             if (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString() == "Gallery")
