@@ -26,21 +26,33 @@
     font-size: 24px;
 }
 
-.setting-button{
+.setting-button,
+.setting-button-on,
+.setting-button-off{
     flex-grow: 1;
     flex-grow: 1;
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255,255,255,0.9);
     border: none;
     color: white;
     font-size: 24px;
+    border-radius:5px;
+}
+
+.setting-button:hover{
+    box-shadow: 0px 0px 0px 4px rgba(255,255,255,0.45);
 }
 
 .setting-button-on{
-    background-color:rgba(0,255,0,0.6);
+    background-color:rgba(0,255,0,0.9);
 }
 
 .setting-button-off{
-    background-color:rgba(255,0,0,0.6);
+    background-color:rgba(255,0,0,0.9);
+}
+
+.setting {
+    background-color:rgba(0,0,0,0.6);
+    margin:10px 0;
 }
 
 .uppercase{
