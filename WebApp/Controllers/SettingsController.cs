@@ -19,6 +19,11 @@ namespace WebApp.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// Update settings using view
+        /// </summary>
+        /// <param name="difference">Ignore - unused property to override Index() method</param>
         [HttpPost]
         public ActionResult Index(int? difference)
         {

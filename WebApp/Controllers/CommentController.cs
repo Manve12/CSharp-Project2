@@ -106,6 +106,11 @@ namespace WebApp.Controllers
             return RedirectToAction("Index", new { id = photoId });
         }
 
+        /// <summary>
+        /// Get photo by id from API
+        /// </summary>
+        /// <param name="id">Id of photo</param>
+        /// <returns>JToken</returns>
         private static JToken GetPhoto(string id)
         {
             try
@@ -120,6 +125,11 @@ namespace WebApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Get user by username from API
+        /// </summary>
+        /// <param name="username">Username to search by</param>
+        /// <returns>JToken</returns>
         private static JToken GetUser(string username)
         {
             var url = "https://api.unsplash.com/users/" + username + "?client_id=451f6851f8873903472e4ae17e9bac7afbe0a6ef4959cdca25b3ca195fdf22d3";

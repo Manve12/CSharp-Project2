@@ -18,10 +18,11 @@ namespace WebApp.Controllers
     [Authorize]
     public class GalleryController : Controller
     {
-        // GET: Gallery
+        /// <summary>
+        /// Render initial gallery
+        /// </summary>
         public ActionResult Index()
         {
-            
             dynamic searchId = _getID();
             
             if (searchId.Length == 6)
@@ -53,7 +54,12 @@ namespace WebApp.Controllers
                 return RenderGallery(searchId);
             }
         }
-
+        
+        /// <summary>
+        /// Render gallery depending on the page number or page number and search query
+        /// </summary>
+        /// <param name="PageNumber">Page number to display</param>
+        /// <param name="SearchQuery">Search API for specific images</param>
         public ActionResult RenderGallery(int PageNumber, string SearchQuery = null)
         {
             List<JToken> photoList;
@@ -82,12 +88,21 @@ namespace WebApp.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Returns a list form of the URL
+        /// </summary>
         private static dynamic _getID()
         {
             return (System.Web.HttpContext.Current.Request.Url.AbsoluteUri)
                                 .Split('/');
         }
 
+        /// <summary>
+        /// Call api for retrieve data
+        /// </summary>
+        /// <param name="urlSection">Url section for api to direct too</param>
+        /// <param name="pageNumber">Page number to retrieve</param>
+        /// <param name="searchQuery">Search query if required by url section</param>
         private static dynamic _callApi(string urlSection, int pageNumber = 1, string searchQuery = null)
         {
             string url;
@@ -113,6 +128,9 @@ namespace WebApp.Controllers
             return obj;
         }
         
+        /// <summary>
+        /// Gets random image URL from API
+        /// </summary>
         public static string GetRandomImageUrl()
         {
             dynamic jsonData = _callApi("photos/random");
@@ -120,6 +138,12 @@ namespace WebApp.Controllers
             return jsonData["urls"]["full"].Value;
         }
 
+        /// <summary>
+        /// Get list of photos
+        /// </summary>
+        /// <param name="apiDirectory">API directory (URL SECTION) to search by</param>
+        /// <param name="pageNumber">Page number to search by</param>
+        /// <param name="searchQuery">Search query if required by api directory</param>
         public static List<JToken> GetPhotos(string apiDirectory, int pageNumber, string searchQuery = null)
         {
             JArray listOfPhotos;
@@ -139,6 +163,10 @@ namespace WebApp.Controllers
             return photos;
         }
 
+        /// <summary>
+        /// Get the number of comments for the image
+        /// </summary>
+        /// <param name="photoId">Photo id to search database by</param>
         private static int _getCommentAmount(string photoId)
         {
             using (var db = new ApplicationDbContext())
@@ -154,6 +182,10 @@ namespace WebApp.Controllers
             }
         }
 
+        /// <summary>
+        /// Get comments for a photo
+        /// </summary>
+        /// <param name="PhotoList">Photo id to search database by</param>
         private List<PhotoModel> _getPhotoCommentList(List<JToken> PhotoList)
         {
             var photoCommentList = new List<PhotoModel>();
@@ -171,6 +203,10 @@ namespace WebApp.Controllers
             return photoCommentList;
         }
 
+        /// <summary>
+        /// Get list of page numbers
+        /// </summary>
+        /// <param name="pageNumber">Page number to calculate from</param>
         private List<int> _getListOfPageNumbers(int pageNumber)
         {
             var listOfPageNumbers = new List<int>();
@@ -189,6 +225,11 @@ namespace WebApp.Controllers
             return listOfPageNumbers;
         }
 
+        /// <summary>
+        /// Check if a value is numeric
+        /// </summary>
+        /// <param name="value">Value to check</param>
+        /// <returns></returns>
         private static Boolean isNumeric(string value)
         {
             return value.All(Char.IsDigit);
