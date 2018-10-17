@@ -3,14 +3,27 @@
 <div class="search-wrapper">
     @using (Html.BeginForm("Search", "Search", FormMethod.Post,new { @class="search-form"}))
     {
-        @Html.TextBox("SearchInput", null, new { @class="search-textbox" })
+        @Html.TextBox("searchInput", null, new { @class="search-textbox" })
         <button class="search-button-search">Search</button>
     }
 </div>
 
 @using (Html.BeginForm("Close", "Search",FormMethod.Post))
 {
-    var lastElement = (HttpContext.Current.Request.Url.AbsoluteUri).Split('/').Last();
-    @Html.Hidden("returnUrlId", lastElement)
+    var url = (HttpContext.Current.Request.Url.AbsoluteUri);
+
+    var splitUrl = url.Split('/');
+
+
+    string searchId = splitUrl[5];
+    string queryId = null;
+
+    if (splitUrl.Length == 7) // if equals to search query and query id (e.g: [localhost]/Gallery/Index/Cat/2))
+    {
+        queryId = splitUrl[6];
+    }
+
+    @Html.Hidden("searchId", searchId)
+    @Html.Hidden("queryId", queryId)
     <button class="search-button-close">X</button>
 }

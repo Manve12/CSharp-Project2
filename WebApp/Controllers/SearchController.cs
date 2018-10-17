@@ -13,25 +13,35 @@ namespace WebApp.Controllers
             return PartialView("_Index");
         }
 
-        [HttpPost]
-        public ActionResult Search(string SearchInput)
+        private ActionResult handleSearch(string searchInput)
         {
-            return RedirectToAction("Index", "Gallery", new { id = SearchInput});
+            return RedirectToAction("Index", "Gallery", new { id = searchInput });
+        }
+
+        private ActionResult handleSearch(string searchId, string queryId)
+        {
+            if (queryId != null)
+            {
+                return RedirectToAction("Index", "Gallery", new { id = searchId, queryId = queryId });
+            }
+            else
+            {
+                return RedirectToAction("Index", "Gallery", new { id = searchId });
+            }
         }
 
         [HttpPost]
-        public ActionResult Close(string returnUrlId)
+        public ActionResult Search(FormCollection form)
         {
-            Debug.WriteLine(returnUrlId);
-            int id;
+            return handleSearch(form["searchInput"]);
+        }
 
-            if (!int.TryParse(returnUrlId, out id)) {
-                id = 1;
-            }
-
-            Debug.WriteLine(id);
-            return RedirectToAction("Index","Gallery", new { id = id });
-
+        [HttpPost]
+        public ActionResult Close(FormCollection form)
+        {
+            var g = form["searchId"];
+            var t = form["queryId"];
+            return handleSearch(form["searchId"], form["queryId"]);
         }
     }
 }
