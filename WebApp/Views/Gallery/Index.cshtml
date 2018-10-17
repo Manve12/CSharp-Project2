@@ -1,5 +1,7 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model WebApp.Models.GalleryViewModel
+
+@{
+    ViewBag.Title = "Gallery";
 }
 
 @using Newtonsoft.Json;
@@ -8,10 +10,10 @@
 <div id="search-container"></div>
 
 <div class="gallery-wrapper">
-    <img class="gallery-random-background" src="@ViewData["RandomImageUrl"]" />
+    <img class="gallery-random-background" src="@Model.RandomImageUrl" />
     <div class="gallery-random-background-overlay">
         <div class="gallery-image-container">
-            @foreach (var i in ViewBag.PhotoList)
+            @foreach (var i in Model.PhotoList)
             {
                 <div class="gallery-image">
                     <img src="@i["urls"]["regular"]" />
@@ -21,7 +23,7 @@
                             <div class="gallery-image-overlay-author-likes"><i class="fas fa-heart"></i> @i["likes"]</div>
 
                             <ul class="gallery-image-overlay-comment-wrapper">
-                                @foreach (var photo in ViewBag.CommentList) {
+                                @foreach (var photo in Model.CommentList) {
                                                 var p = photo.PhotoId;
                                                 if (photo.PhotoId.ToString() == i["id"].ToString())
                                                 {
@@ -53,13 +55,13 @@
                 
                     <ul class="gallery-page-number-list">
                         @{
-                            foreach (int i in ViewBag.PageNumbers)
+                            foreach (int i in Model.PageNumbers)
                             {
                                 <li class="gallery-page-number" id="@(i+1)">
-                                    @if (ViewBag.PageNumberPrefix != null)
+                                    @if (Model.PageNumberPrefix != null)
                                     {
                                         var newI = i + 1;
-                                        <a href="@(Url.Action("Index", "Gallery", new { id = ViewBag.PageNumberPrefix, queryId = newI }))">@newI</a>
+                                        <a href="@(Url.Action("Index", "Gallery", new { id = Model.PageNumberPrefix, queryId = newI }))">@newI</a>
                                     }
                                     else
                                     {

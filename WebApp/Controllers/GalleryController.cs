@@ -31,9 +31,9 @@ namespace WebApp.Controllers
                 {
                     int pageId;
                     int.TryParse(searchId, out pageId);
-                    return RenderGalleryByNumber(pageId);
+                    return RenderGallery(pageId);
                 }
-                return RenderGalleryByText(searchId, 1);
+                return RenderGallery(1, searchId);
             }
             if (searchId.Length == 7) {
                 //get query string
@@ -45,99 +45,41 @@ namespace WebApp.Controllers
                 {
                     return HttpNotFound();
                 }
-                return RenderGalleryByText(queryString, pageNumber);
+                return RenderGallery(pageNumber, queryString);
             }
             else
             {
                 searchId = 1;
-                return RenderGalleryByNumber(searchId);
+                return RenderGallery(searchId);
             }
         }
 
-        public ActionResult RenderGalleryByText(string searchQuery, int pageNumber)
+        public ActionResult RenderGallery(int PageNumber, string SearchQuery = null)
         {
-            //depending on the page number work the next set available
-            var listOfPageNumbers = new List<int>();
+            List<JToken> photoList;
 
-            var minimumPageNumber = 0;
-
-            if ((pageNumber - 4) > 0)
+            if (SearchQuery != null)
             {
-                minimumPageNumber = pageNumber - 4;
-            }
-
-            for (int i = minimumPageNumber; i < minimumPageNumber + 10; i++)
+                photoList = GetPhotos("search/photos", PageNumber, SearchQuery);
+            } else
             {
-                listOfPageNumbers.Add(i);
-            }
-
-            var photoList = GetPhotos("search/photos",pageNumber,searchQuery);
-
-            //get photo comments and store in a new list
-            var photoCommentList = new List<PhotoModel>();
-
-            foreach (var photo in photoList)
-            {
-                photoCommentList.Add(
-                    new PhotoModel
-                    {
-                        PhotoId = photo["id"].ToString(),
-                        CommentAmount = _getCommentAmount(photo["id"].ToString())
-                    });
+                photoList = GetPhotos("photos", PageNumber);
             }
 
             //Send data to view
+            GalleryViewModel model = new GalleryViewModel();
 
-            ViewBag.PhotoList = photoList;
-            ViewData["RandomImageUrl"] = GetRandomImageUrl();
-            ViewBag.PageNumberPrefix = searchQuery;
-            ViewBag.PageNumbers = listOfPageNumbers;
-            ViewBag.CommentList = photoCommentList;
+            model.PhotoList = photoList;
+            model.RandomImageUrl = GetRandomImageUrl();
+            model.PageNumbers = _getListOfPageNumbers(PageNumber);
+            model.CommentList = _getPhotoCommentList(photoList);
 
-            return View();
-        }
-
-        public ActionResult RenderGalleryByNumber(int pageNumber)
-        {
-            //depending on the page number work the next set available
-            var listOfPageNumbers = new List<int>();
-
-            var minimumPageNumber = 0;
-
-            if ((pageNumber - 4) > 0)
+            if (SearchQuery != null)
             {
-                minimumPageNumber = pageNumber - 4;
+                model.PageNumberPrefix = SearchQuery;
             }
 
-            for (int i = minimumPageNumber; i < minimumPageNumber + 10; i++)
-            {
-                listOfPageNumbers.Add(i);
-            }
-
-            //get all of the photos
-            var photoList = GetPhotos("photos",pageNumber);
-
-            //get photo comments and store in a new list
-            var photoCommentList = new List<PhotoModel>();
-
-            foreach (var photo in photoList)
-            {
-                photoCommentList.Add(
-                    new PhotoModel
-                    {
-                        PhotoId = photo["id"].ToString(),
-                        CommentAmount = _getCommentAmount(photo["id"].ToString())
-                    });
-            }
-
-            //Send data to view
-
-            ViewBag.PhotoList = photoList;
-            ViewData["RandomImageUrl"] = GetRandomImageUrl();
-            ViewBag.PageNumbers = listOfPageNumbers;
-            ViewBag.CommentList = photoCommentList;
-
-            return View();
+            return View(model);
         }
 
         private static dynamic _getID()
@@ -210,6 +152,41 @@ namespace WebApp.Controllers
                 return photo.UserComments.Count();
                 
             }
+        }
+
+        private List<PhotoModel> _getPhotoCommentList(List<JToken> PhotoList)
+        {
+            var photoCommentList = new List<PhotoModel>();
+
+            foreach (var photo in PhotoList)
+            {
+                photoCommentList.Add(
+                    new PhotoModel
+                    {
+                        PhotoId = photo["id"].ToString(),
+                        CommentAmount = _getCommentAmount(photo["id"].ToString())
+                    });
+            }
+
+            return photoCommentList;
+        }
+
+        private List<int> _getListOfPageNumbers(int pageNumber)
+        {
+            var listOfPageNumbers = new List<int>();
+
+            var minimumPageNumber = 0;
+
+            if ((pageNumber - 4) > 0)
+            {
+                minimumPageNumber = pageNumber - 4;
+            }
+
+            for (int i = minimumPageNumber; i < minimumPageNumber + 10; i++)
+            {
+                listOfPageNumbers.Add(i);
+            }
+            return listOfPageNumbers;
         }
 
         private static Boolean isNumeric(string value)
