@@ -9,6 +9,6 @@
     $("#search-container").load('/Search/Index/'+lastElement);
 });
 
-$("form").on("submit", function (e) {
-    e.preventDefault();
-});
+//$("form").on("submit", function (e) {
+//    e.preventDefault();
+//});
