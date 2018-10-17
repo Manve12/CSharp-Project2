@@ -1,4 +1,4 @@
-﻿.register-wrapper {
+﻿.login-register-wrapper {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -9,7 +9,7 @@
     color:white;
 }
 
-.register-form-wrapper{
+.login-register-form-wrapper{
     position: absolute;
     left: 50%;
     top: 50%;
@@ -23,38 +23,38 @@
     border-radius:5px;
 }
 
-.register-heading,
-.register-title {
+.login-register-heading,
+.login-register-title {
     text-align: center;
 }
 
-.register-form .form-group {
+.login-register-form .form-group {
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
 }
 
-.register-button-wrapper {
+.login-register-button-wrapper {
     margin: 0;
     padding: 0 25px;
 }
 
-.register-edit-field:focus,
-.register-edit-field:active,
-.register-edit-field:hover,
-.register-button:focus,
-.register-button:active,
-.register-button:hover
+.login-register-edit-field:focus,
+.login-register-edit-field:active,
+.login-register-edit-field:hover,
+.login-register-button:focus,
+.login-register-button:active,
+.login-register-button:hover
 {
     outline: none;
-    box-shadow: 0px 0px 0px 4px rgba(255,255,255,0.8);
+    box-shadow: 0px 0px 0px 4px rgba(255,255,255,0.45);
     color:white;
 }
 
-.register-button,
-.register-edit-field {
-    background-color: rgba(255,255,255,0.8);
+.login-register-button,
+.login-register-edit-field {
+    background-color: rgba(255,255,255,0.9);
     border: none;
     border-radius:3px;
     padding:10px;
@@ -65,11 +65,11 @@
     font-size:2rem;
 }
 
-.register-label{
+.login-register-label{
     margin:auto;
 }
 
-.register-button {
+.login-register-button {
     border: none;
     margin:auto;
     margin-top:10px;
@@ -79,14 +79,14 @@
     font-size:18px;
 }
 
-.register-form .form-group{
+.login-register-form .form-group{
     padding: 40px;
     padding-top: 10px;    
 }
 
-.register-edit-field,
-.register-edit-field:hover,
-.register-edit-field:focus,
-.register-edit-field:active{
+.login-register-edit-field,
+.login-register-edit-field:hover,
+.login-register-edit-field:focus,
+.login-register-edit-field:active{
     color:black;
 }

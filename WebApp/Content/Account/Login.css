@@ -1,99 +1,5 @@
-﻿.login-wrapper
-{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    padding:0;
-    margin:0;   
-    left:0;
-    top:0;
-}
-
-.login-form-wrapper{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width:75%;
-    font-size:16px;
-}
-
-.login-heading,
-.login-form{
-    color:white;
-}
-
-.login-heading,
-.login-title
-{
-    text-align:center;
-}
-
-.login-form .form-group
-{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-/*Login button*/
-.login-button-wrapper {
-    margin: 0;
-    padding: 0 25px;
-}
-
-.login-button {
-    float: right !important;
-    background-color: rgba(255,0,0,0.6);
-    color: white;
-    border: none;
-    margin:auto;
-    width:75%;
-    margin-top:10px;
-}
-
-.login-edit-field:focus,
-.login-edit-field:active,
-.login-edit-field:hover,
-.login-button:focus,
-.login-button:active,
-.login-button:hover
-{
-    outline: none;
-    box-shadow: 0px 0px 0px 4px rgba(255,255,255,0.6);
-    color:white;
-}
-
-/*Input field*/
-.login-edit-field
-{
-    background-color: rgba(0,0,0,0.6);
-    border: none;
-    border-radius:3px;
-    padding:10px;
-    color: white;
-    margin:auto;
-    width:75%;
-    margin-bottom:10px;
-}
-
-.login-label{
-   margin:auto;
-}
-
-.login-remember{
+﻿.login-remember{
     text-align: center;
-}
-
-.login-form-wrapper a{
-    color:white;
-    text-align:center;
-}
-
-.login-form-wrapper a:hover{
-    color:white;
-    text-decoration:none;
 }
 
 input[type="checkbox"]
@@ -104,6 +10,13 @@ input[type="checkbox"]
 input[type="checkbox"]:hover
 {
     box-shadow:0px 0px 0px 4px rgba(0,0,0,0.6);
+}
+
+.login-register-form .form-group a{
+    color:white;
+    text-decoration:none;
+    text-align:center;
+    font-weight:bold;
 }
 
 /* BOOTSTRAP OVERWRITES */

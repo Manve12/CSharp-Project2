@@ -3,29 +3,29 @@
     ViewBag.Title = "Register";
 }
 
-<div class="register-wrapper">
-    <div class="register-form-wrapper">
+<div class="login-register-wrapper">
+    <div class="login-register-form-wrapper">
 
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal register-form", role = "form" }))
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal login-register-form", role = "form" }))
         {
-            <h2 class="register-heading uppercase">@ViewBag.Title</h2>
+            <h2 class="login-register-heading uppercase">@ViewBag.Title</h2>
             @Html.AntiForgeryToken()
             @Html.ValidationSummary("", new { @class = "text-danger" })
 
             <div class="form-group">
-                @Html.LabelFor(m => m.Email, new { @class = "register-label" })
+                @Html.LabelFor(m => m.Email, new { @class = "login-register-label" })
 
-                @Html.TextBoxFor(m => m.Email, new { @class = "register-edit-field" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "login-register-edit-field" })
 
-                @Html.LabelFor(m => m.Password, new { @class = "register-label control-label" })
+                @Html.LabelFor(m => m.Password, new { @class = "login-register-label control-label" })
 
-                @Html.PasswordFor(m => m.Password, new { @class = "register-edit-field" })
+                @Html.PasswordFor(m => m.Password, new { @class = "login-register-edit-field" })
 
-                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "register-label control-label" })
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "login-register-label control-label" })
 
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "register-edit-field" })
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "login-register-edit-field" })
 
-                <input type="submit" class="btn register-button" value="Register" />
+                <input type="submit" class="btn login-register-button" value="Register" />
             </div>
         }
     </div>

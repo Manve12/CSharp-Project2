@@ -1,24 +1,24 @@
 ﻿@using WebApp.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Login";
 }
-<div class="login-wrapper">
-    <div class="login-form-wrapper">
-        <h2 class="login-heading">@ViewBag.Title.</h2>
+<div class="login-register-wrapper">
+    <div class="login-register-form-wrapper">
         <div>
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal login-form", role = "form" }))
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal login-register-form", role = "form" }))
             {
-                @Html.AntiForgeryToken()
+                <h2 class="login-register-heading uppercase">@ViewBag.Title</h2>
 
+                @Html.AntiForgeryToken()
                 @Html.ValidationSummary("", new { @class = "text-danger" })
 
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "login-label" })
-                    @Html.TextBoxFor(m => m.Email, new { @class = " login-edit-field" })
+                    @Html.LabelFor(m => m.Email, new { @class = "login-register-label" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = " login-register-edit-field" })
 
-                    @Html.LabelFor(m => m.Password, new { @class = "login-label" })
-                    @Html.PasswordFor(m => m.Password, new { @class = "login-edit-field" })
+                    @Html.LabelFor(m => m.Password, new { @class = "login-register-label" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "login-register-edit-field" })
 
                     <div class="login-remember">
                         @Html.CheckBoxFor(m => m.RememberMe)
@@ -27,11 +27,7 @@
 
                     @Html.ActionLink("Register as a new user", "Register")
 
-                    @*<p class="login-action-link">
-                              @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </p>*@
-
-                    <input type="submit" value="Log in" class="login-button btn" />
+                    <input type="submit" value="Log in" class="login-register-button btn" />
                 </div>
             }
         </div>
