@@ -94,21 +94,32 @@ textarea {
 
 .index-moreInfo,
 .index-signUp{
-    background-color:rgba(0,0,0,0.6);
-    font-size:4rem;
-    padding:10px;
+    background-color:rgba(0,0,0,0.9);
+    font-size:3.5rem;
+    padding:20px;
     color:white;
-    margin:5px
+    margin:5px;
+    border-radius:5px;
 }
 
 .index-moreInfo:hover,
-.index-signUp:hover{
+.index-signUp:hover,
+.index-moreInfo:active,
+.index-signUp:active,
+.index-moreInfo:focus,
+.index-signUp:focus
+{
     color:white;
     text-decoration:none;
 }
 
+.index-moreInfo:hover,
+.index-signUp:hover{
+    box-shadow: 0px 0px 0px 4px rgba(255,255,255,0.45);
+}
+
 .index-signUp{
-    background-color:rgba(255,0,0,0.6);
+    background-color:rgba(255,0,0,0.9);
 }
 
 /* Validation summary */

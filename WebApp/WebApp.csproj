@@ -207,7 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Account\Login.css" />
-    <Content Include="Content\Account\Register.css" />
+    <Content Include="Content\Account\LoginRegister.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Comment.css" />
