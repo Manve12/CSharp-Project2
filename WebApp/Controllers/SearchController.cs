@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net;
 using System.Web.Mvc;
+using WebApp.Models;
 
 namespace WebApp.Controllers
 {
@@ -13,35 +14,23 @@ namespace WebApp.Controllers
             return PartialView("_Index");
         }
 
-        private ActionResult handleSearch(string searchInput)
+        [HttpPost]
+        public ActionResult Search(SearchViewModel search)
         {
-            return RedirectToAction("Index", "Gallery", new { id = searchInput });
+            return RedirectToAction("Index", "Gallery", new { id = search.SearchInput });
         }
 
-        private ActionResult handleSearch(string searchId, string queryId)
+        [HttpPost]
+        public ActionResult Close(SearchViewModel search)
         {
-            if (queryId != null)
+            if (search.QueryId != null)
             {
-                return RedirectToAction("Index", "Gallery", new { id = searchId, queryId = queryId });
+                return RedirectToAction("Index", "Gallery", new { id = search.SearchId, queryId = search.QueryId });
             }
             else
             {
-                return RedirectToAction("Index", "Gallery", new { id = searchId });
+                return RedirectToAction("Index", "Gallery", new { id = search.SearchId });
             }
-        }
-
-        [HttpPost]
-        public ActionResult Search(FormCollection form)
-        {
-            return handleSearch(form["searchInput"]);
-        }
-
-        [HttpPost]
-        public ActionResult Close(FormCollection form)
-        {
-            var g = form["searchId"];
-            var t = form["queryId"];
-            return handleSearch(form["searchId"], form["queryId"]);
         }
     }
 }

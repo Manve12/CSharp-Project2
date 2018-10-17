@@ -3,7 +3,7 @@
 <div class="search-wrapper">
     @using (Html.BeginForm("Search", "Search", FormMethod.Post,new { @class="search-form"}))
     {
-        @Html.TextBox("searchInput", null, new { @class="search-textbox" })
+        @Html.TextBoxFor(m => m.SearchInput, new { @class="search-textbox" })
         <button class="search-button-search">Search</button>
     }
 </div>
@@ -23,7 +23,7 @@
         queryId = splitUrl[6];
     }
 
-    @Html.Hidden("searchId", searchId)
-    @Html.Hidden("queryId", queryId)
+    @Html.HiddenFor(m => m.SearchId, searchId)
+    @Html.HiddenFor(m => m.QueryId, queryId)
     <button class="search-button-close">X</button>
 }

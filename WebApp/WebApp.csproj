@@ -200,7 +200,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PhotoModel.cs" />
     <Compile Include="Models\RandomImage.cs" />
-    <Compile Include="Models\Search.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
