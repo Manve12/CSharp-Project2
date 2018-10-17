@@ -3,7 +3,7 @@
 <div class="search-wrapper">
     @using (Html.BeginForm("Search", "Search", FormMethod.Post,new { @class="search-form"}))
     {
-        @Html.TextBoxFor(m => m.SearchInput, new { @class="search-textbox" })
+        @Html.TextBoxFor(m => m.SearchInput, new { placeholder = "Search...", autocomplete="off", @class ="search-textbox" })
         <button class="search-button-search">Search</button>
     }
 </div>
