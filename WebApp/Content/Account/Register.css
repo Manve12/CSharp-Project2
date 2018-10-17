@@ -35,15 +35,6 @@
     padding: 0 25px;
 }
 
-.register-button {
-    float: right !important;
-    border: none;
-    margin:auto;
-    width:75%;
-    margin-top:10px;
-}
-
-
 .register-edit-field:focus,
 .register-edit-field:active,
 .register-edit-field:hover,
@@ -70,4 +61,13 @@
 
 .register-label{
     margin:auto;
+}
+
+.register-button {
+    float: right !important;
+    border: none;
+    margin:auto;
+    width:75%;
+    margin-top:10px;
+    background-color:rgba(255,0,0,0.6);
 }

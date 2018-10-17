@@ -45,7 +45,7 @@
 
 .login-button {
     float: right !important;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(255,0,0,0.6);
     color: white;
     border: none;
     margin:auto;
