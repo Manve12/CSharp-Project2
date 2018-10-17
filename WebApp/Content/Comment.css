@@ -21,6 +21,7 @@
     width:100%;
     min-width:300px;
     max-height:100%;
+    border-radius:5px;
 }
 
 .body-content{
@@ -33,10 +34,11 @@
 }
 
 /* AUTHOR */
-
 .comment-author-photo {
+    margin-top:5px;
     width:12.5%;
     min-width:100px;
+    border-radius:5px;
 }
 
 .comment-author {
@@ -74,9 +76,11 @@
 }
 
 .comment{
-    background-color:rgba(255,255,255,0.6);
-    padding:10px;
-    margin-bottom:10px;
+    background-color: rgba(255,255,255,0.9);
+    padding: 10px;
+    margin-bottom: 10px;
+    color: black;
+    font-weight: bold;
 }
 
 .comment-name{
@@ -92,14 +96,26 @@
 .comment-submit{
     flex: 1;
     margin-right: 20px;
+    font-weight: bold;
+    background-color: rgba(255,0,0,0.9);
+    color: white;
+    border-radius: 5px;
+}
+
+.comment-submit:hover{
+    color:white;
+}
+
+
+.comment-comments-input textarea{
+    resize: none;
+    border-radius: 5px;
+    color: black;
+    padding: 0px 10px;
 }
 
 /* MEDIA QUERIES */
 @media (max-width:635px){
-    .comment-section{
-        
-    }
-
     .comment-image{
         width:100%;
         height:72.5%;
