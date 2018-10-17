@@ -26,18 +26,22 @@ namespace WebApp.Controllers
 
             try
             {
-                
+
+                //instantiate new model
+                CommentViewModel commentViewModel = new CommentViewModel();
+
                 using (var db = new ApplicationDbContext())
                 {
+                    
                     //get comments    
                     Comments comments = db.Comments.FirstOrDefault(c => c.PhotoId == id);
 
                     if (comments != null)
                     {
-                        ViewBag.Comments = comments.UserComments;
+                        commentViewModel.Comments = comments.UserComments;
                     } else
                     {
-                        ViewBag.Comments = null;
+                        commentViewModel.Comments = null;
                     }
 
                     dynamic photoData = GetPhoto(id);
@@ -49,10 +53,10 @@ namespace WebApp.Controllers
                         return HttpNotFound();
                     }
 
-                    ViewBag.PhotoData = photoData;
-                    ViewBag.UserData = userData;
+                    commentViewModel.PhotoData = photoData;
+                    commentViewModel.UserData = userData;
                 }
-                return View();
+                return View(commentViewModel);
             }
             catch (Exception)
             {
@@ -69,8 +73,6 @@ namespace WebApp.Controllers
         [HttpPost]
         public ActionResult Index(string commentInput, string[] param = null)
         {
-
-
             var photoId = (System.Web.HttpContext.Current.Request.Url.AbsoluteUri).Split('/').Last();
 
             var username = User.Identity.Name;
